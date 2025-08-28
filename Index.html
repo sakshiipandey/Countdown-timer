@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: gray;
+      color: color(from color srgb r g b);
+      font-family: Arial, sans-serif;
+    }
+    .timer {
+      text-align: center;
+    }
+    .logo {
+      width: 80px;         /* smaller logo */
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 4rem;     /* BIGGER countdown text */
+      font-weight: bold;   /* make it bold */
+      background: gray;
+      padding: 20px 50px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer">
+    <!-- Logo -->
+    <img src="./depositphotos_94658968-stock-illustration-lets-go-time-to-work.jpg" width="300" height="300">
+
+    <h1>Countdown Timer</h1>
+    <div id="countdown"></div>
+  </div>
+
+  <script>
+    // Set the countdown date (example: 60 minutes from now)
+    let countdownTime = new Date().getTime() + (60 * 60 * 1000);
+
+    let timer = setInterval(function() {
+      let now = new Date().getTime();
+      let distance = countdownTime - now;
+
+      // Time calculations
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display result
+      document.getElementById("countdown").innerHTML =
+        minutes + "m " + seconds + "s ";
+
+      // When the countdown is over
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "⏰ Time’s Up!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
